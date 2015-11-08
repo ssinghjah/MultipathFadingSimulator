@@ -1,10 +1,12 @@
 <html>
    <head>
       <title>Multipath Fading</title>
-      <link rel="stylesheet" type="text/css" href="css/my.css">
       <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" >
+      <link rel="stylesheet" type="text/css" href="css/bootstrapToggle.min.css">
+      <link rel="stylesheet" type="text/css" href="css/my.css">
       <script type="text/javascript" src="js/jquery.min.js"></script>
       <script type="text/javascript" src="js/bootstrap.min.js"></script>
+      <script type="text/javascript" src="js/bootstrapToggle.min.js"></script>
       <script type="text/javascript" src="js/raphael.js"></script>
       <script type="text/javascript" src="js/uiutils.js"></script>
       <script type="text/javascript" src="js/editorutils.js"></script>
@@ -71,10 +73,17 @@
                </section>
             </div>
             <!-- Magnitude Plot -->
-            <div class="col-md-6" id="magPlot" style="display:none">
-               <section class="paddingTopHeader" id="magCanvas">
-               </section>
-            </div>
+             <div class="col-md-6 paddingTopHeader" id="magPlot" style="display:none">
+                 <div class="row">
+                     <div class="col-md-12 highZ">
+                         <input type="checkbox" data-magtype="db" id="toggleMagType" checked data-toggle="toggle" data-width="75" data-on="dB" data-off="Linear" data-onstyle="primary" data-offstyle="default">
+                     </div>
+                     <div class="col-md-12">
+                         <section id="magCanvas"></section>
+
+                     </div>
+                 </div>
+             </div>
          </div>
       </div>
    </body>

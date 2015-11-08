@@ -65,9 +65,6 @@ MagPlot.initGeometry = function(){
     this.resultantMag = this.svg.circle( this.width/2, this.height/2, 6);
     this.resultantMag.attr("fill", "green");
     this.resultantMag.attr("stroke", "#fff");
-    
-    //
-    this.magScale = 10;
 
     // Start from extreme left on the time axis
     this.currentTime = 0;
@@ -105,20 +102,20 @@ MagPlot.updateMag = function(vector, magPoint, prevPoint, color){
         var power = resultant * resultant;
         var powerDb = Math.log(power) / Math.log(10);
         mag = powerDb;
-        this.magScale = 10;
+        magScale = 20;
     }
     else if (magType === "linear")
     {
         var cosComponent = vector.xshift - Math.round(vector.matrix.x(vector.head[0], vector.head[1]));
         mag = cosComponent;
-        this.magScale = 1;
+        magScale = 1;
     }
     
-    if (Math.abs(mag * this.magScale) > this.height / 2) {
-        this.magScale = this.height / (2 * Math.abs(mag));
-    }
+    // if (Math.abs(mag * magScale) > this.height / 2) {
+    //    magScale = this.height / (2 * Math.abs(mag));
+    //}
 
-    mag = this.height / 2 - mag * this.magScale;
+    mag = this.height / 2 - mag * magScale;
     magPoint.attr({ "cx": this.currentTime, "cy": mag });
 
     var line = this.svg.path(["M", prevPoint.x, prevPoint.y, "L", this.currentTime, mag]);
