@@ -54,3 +54,11 @@
             .translucent{
                 opacity:0.8;
             }
+
+            #magCanvas{
+                margin-top:-35px;
+            }
+
+            .highZ{
+                z-index:2;
+            }
