@@ -50,3 +50,13 @@ onToggleMagnitude = function( show){
   }
   reinit();
 }
+
+onToggleMagType = function () {
+    var magTypeElem = document.getElementById('toggleMagType');
+    if (magTypeElem.checked)
+        magType = "db";
+    else
+        magType = "linear";
+    reinit();
+  
+}
