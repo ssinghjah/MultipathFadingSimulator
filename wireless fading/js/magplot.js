@@ -97,23 +97,33 @@ MagPlot.updateGeometry = function(){
 
 MagPlot.updateMag = function(vector, magPoint, prevPoint, color){
 
-   // var cosComponent = vector.xshift - Math.round(vector.matrix.x(vector.head[0],vector.head[1]));
+   
+    var mag;
+    if (magType === "db")
+    {
+        var resultant = vector.getTotalLength();
+        var power = resultant * resultant;
+        var powerDb = Math.log(power) / Math.log(10);
+        mag = powerDb;
+        this.magScale = 10;
+    }
+    else if (magType === "linear")
+    {
+        var cosComponent = vector.xshift - Math.round(vector.matrix.x(vector.head[0], vector.head[1]));
+        mag = cosComponent;
+        this.magScale = 1;
+    }
     
-    var resultant = vector.getTotalLength();
-    var power =  cosComponent * cosComponent;
-    power = Math.log(power)/Math.log(10);
-    
-    if(Math.abs(power * this.magScale) > this.height/2){
-        this.magScale = this.height/(2*Math.abs(power));
+    if (Math.abs(mag * this.magScale) > this.height / 2) {
+        this.magScale = this.height / (2 * Math.abs(mag));
     }
 
-    console.log(power);
-    power = this.height/2 - power * this.magScale;
-    magPoint.attr({"cx":this.currentTime,"cy": power});
+    mag = this.height / 2 - mag * this.magScale;
+    magPoint.attr({ "cx": this.currentTime, "cy": mag });
 
-    var line = this.svg.path( ["M", prevPoint.x, prevPoint.y, "L", this.currentTime, power]);
+    var line = this.svg.path(["M", prevPoint.x, prevPoint.y, "L", this.currentTime, mag]);
     line.attr("stroke", color)
     
     prevPoint.x = this.currentTime;
-    prevPoint.y = power;
+    prevPoint.y = mag;
 }
