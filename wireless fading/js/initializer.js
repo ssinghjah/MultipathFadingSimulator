@@ -50,9 +50,11 @@ var initEventWiring = function(){
     document.getElementById("numComponentsButton").addEventListener("click",  onUpdateNumComponents, false);
     document.getElementById("numComponents").addEventListener("keyup",  onNumComponentsKeyUp, false);
     document.getElementById("run").addEventListener("click", onEdit , false);
-    document.addEventListener("keyup", onKeyUp, false); 
+    document.addEventListener("keyup", onKeyUp, false);
     $('#editor').on('hidden.bs.modal', onHideEditor);
-    document.getElementById("toggleMagnitude").addEventListener("click", onToggleMagnitude , false);
+    document.getElementById("toggleMagnitude").addEventListener("click", onToggleMagnitude, false);
+    $("#toggleMagType").change(onToggleMagType);
+  
 }
 
 
