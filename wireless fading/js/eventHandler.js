@@ -42,11 +42,13 @@ onToggleMagnitude = function( show){
       magPlotVisible = true;
       $("#magPlot").show();
       $("#phasorPlot").removeClass("col-md-12").addClass("col-md-6");
+      $('button#toggleMagnitude').text('Hide Magnitude').removeClass("btn-primary").addClass("btn-default");
   }
   else{
       magPlotVisible = false;
       $("#magPlot").hide();
       $("#phasorPlot").removeClass("col-md-6").addClass("col-md-12");
+      $('button#toggleMagnitude').text('Show Magnitude').removeClass("btn-default").addClass("btn-primary");
   }
   reinit();
 }

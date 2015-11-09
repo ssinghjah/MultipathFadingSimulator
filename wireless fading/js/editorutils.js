@@ -1,6 +1,5 @@
 var addComponentUI = function(i){
 
-    var component
     var componentRow = document.createElement("div");
     componentRow.setAttribute("class","row paddingTop");
 
@@ -11,13 +10,13 @@ var addComponentUI = function(i){
     componentLabel.appendChild(document.createTextNode("Component " + (i + 1) + " :"));
 
     var magLabel = createLabel("Mag: ");
-    var magInput = createInputTextBox("mag" + i, Constants.InitialMag);
+    var magInput = createInputTextBox("mag" + i, Constants.InitialMag[i]);
 
     var phaseLabel = createLabel("Phase: ");
-    var phaseInput = createInputTextBox("phase" + i, Constants.InitialPhase);
+    var phaseInput = createInputTextBox("phase" + i, Constants.InitialPhase[i]);
 
     var velocityLabel = createLabel("Freq: ");
-    var velocityInput = createInputTextBox("velocity" + i, Constants.InitialVelocity);
+    var velocityInput = createInputTextBox("velocity" + i, Constants.InitialFreq[i]);
 
     componentColumn.appendChild(componentLabel)
     componentColumn.appendChild(magLabel);

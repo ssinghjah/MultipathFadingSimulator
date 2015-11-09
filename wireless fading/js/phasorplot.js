@@ -12,7 +12,7 @@ PhasorPlot.init = function(){
     
     this.initAxes();
     this.initOrigin();
-    this.initVectors();
+    this.initComponents();
 }
 
 
@@ -38,13 +38,13 @@ PhasorPlot.initOrigin = function(){
         circle.attr("stroke", "#fff");
     }
 
-PhasorPlot.initVectors = function(){
+PhasorPlot.initComponents = function(){
 
 	if( numVectors <= 0)
         return;
     
     // clear all previous vectors
-    vectors = [];
+    components = [];
 
     // create first vector
     var mag, velocity, phase, x, y;
@@ -55,19 +55,19 @@ PhasorPlot.initVectors = function(){
     x = canvasWidth/2;
     y = canvasHeight/2;
     var path = "M " + x + "," + y + " L " + (canvasWidth/2 + mag) + "," + canvasHeight/2;
-    vectors[0] = this.svg.path(path);
-    vectors[0].velocity = velocity;
-    vectors[0].mag = mag;
-    vectors[0].head = [canvasWidth/2 + vectors[0].mag, canvasHeight/2 ];
-    vectors[0].attr({ 'arrow-end':  'block-wide-long',"stroke-width" : 2 });
-    vectors[0].phase = phase;
-    vectors[0].rotate(vectors[0].phase, x, y);
+    components[0] = this.svg.path(path);
+    components[0].velocity = velocity;
+    components[0].mag = mag;
+    components[0].head = [canvasWidth/2 + components[0].mag, canvasHeight/2 ];
+    components[0].attr({ 'arrow-end':  'block-wide-long',"stroke-width" : 2 });
+    components[0].phase = phase;
+    components[0].rotate(components[0].phase, x, y);
 
     // create all other vectors
     var  prev;
     for(var i = 1; i < numVectors; i++)
     {   
-        prev = vectors[i-1];
+        prev = components[i-1];
         mag = getTextBoxValue("mag" + i);
         velocity = getTextBoxValue("velocity" + i);
         phase = getTextBoxValue("phase" + i);
@@ -76,18 +76,18 @@ PhasorPlot.initVectors = function(){
         y = prev.matrix.y(prev.head[0],prev.head[1]);
         
         path = "M " + x + "," + y + " L " + ( x + mag) + "," + y;  
-        vectors[i] = this.svg.path(path);
+        components[i] = this.svg.path(path);
 
-        vectors[i].velocity = velocity;
-        vectors[i].mag = mag;
-        vectors[i].phase = phase;
-        vectors[i].head = [x + mag, y];
-        vectors[i].attr({ 'arrow-end':  'block-wide-long', "stroke-width" : 2 });
-        vectors[i].rotate(vectors[i].phase, x, y);    
+        components[i].velocity = velocity;
+        components[i].mag = mag;
+        components[i].phase = phase;
+        components[i].head = [x + mag, y];
+        components[i].attr({ 'arrow-end':  'block-wide-long', "stroke-width" : 2 });
+        components[i].rotate(components[i].phase, x, y);    
     }
     
     // create resultant vector
-    var last = vectors[numVectors-1];
+    var last = components[numVectors-1];
     x = last.matrix.x(last.head[0],last.head[1]);
     y = last.matrix.y(last.head[0],last.head[1]);
     path = "M " + canvasWidth/2  + "," + canvasHeight/2 + " L " + x  + "," + y;
@@ -98,8 +98,8 @@ PhasorPlot.initVectors = function(){
 PhasorPlot.updateGeometry = function(){
 
         // update first vector
-        vectors[0].rotate( -vectors[0].velocity, canvasWidth/2, canvasHeight/2);
-        vectors[0].xshift = canvasWidth/2;
+        components[0].rotate( -components[0].velocity, canvasWidth/2, canvasHeight/2);
+        components[0].xshift = canvasWidth/2;
 
         // update other vectors
         for(var i = 1; i < numVectors; i++){
@@ -112,7 +112,7 @@ PhasorPlot.updateGeometry = function(){
 
 PhasorPlot.updateResultant = function(){
 
-        var last = vectors[numVectors-1];
+        var last = components[numVectors-1];
         var x = Math.round(last.matrix.x(last.head[0],last.head[1]));
         var y = Math.round(last.matrix.y(last.head[0],last.head[1]));
         var path = "M " + canvasWidth/2  + "," + canvasHeight/2 + " L " + x  + "," + y;
@@ -125,8 +125,8 @@ PhasorPlot.updateResultant = function(){
 
 PhasorPlot.updateVector = function(index){
 
-    var vector = vectors[index];
-    var prev = vectors[index - 1];
+    var vector = components[index];
+    var prev = components[index - 1];
 
     // move to head of prev vector
     var x = prev.matrix.x(prev.head[0],prev.head[1]);

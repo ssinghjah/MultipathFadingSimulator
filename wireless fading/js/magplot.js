@@ -6,7 +6,7 @@ MagPlot.create = function(){
 
 	this.height = canvasHeight;
 	this.width = canvasWidth;
-    this.timeShift = this.width/1600; // Move x coordinate by timeShift on each frame
+    this.timeShift = this.width * timeShiftSpeed; // Move x coordinate by timeShift on each frame
     this.currentTime = 0; // Current time position
 	this.svg = Raphael("magCanvas", this.width, this.height);
 }
@@ -48,19 +48,7 @@ MagPlot.initAxes = function(){
 
 MagPlot.initGeometry = function(){
 
-    // Clear prevoius points
-    //this.prevComponentPoints = [];
     this.prevResPoint = {x:0,y:0};      
-    //this.componentMags = [];
-    // Create circles for each component
-    //for(var i = 0; i < numVectors; i ++){
-        
-      //  this.componentMags[i] = this.svg.circle( this.width/2, this.height/2, 6);
-       // this.componentMags[i].attr("fill", "black");
-        //this.componentMags[i].attr("stroke", "#fff");
-        //this.prevComponentPoints[i] = {x:0,y:0};
-    //}
-
     // Create circles for resultant
     this.resultantMag = this.svg.circle( this.width/2, this.height/2, 6);
     this.resultantMag.attr("fill", "green");
@@ -82,19 +70,13 @@ MagPlot.updateGeometry = function(){
     }
 
     this.currentTime %= this.width;
-    
-    //    for(var i = 0; i < numVectors; i ++)
-    //  {
-    //    MagPlot.updateMag(vectors[i], this.componentMags[i], this.prevComponentPoints[i], "black");
-    // }
-
-    MagPlot.updateMag(resultant, this.resultantMag, this.prevResPoint, "green");
+    MagPlot.updateMag(resultant, this.resultantMag, this.prevResPoint);
 }
 
 
-MagPlot.updateMag = function(vector, magPoint, prevPoint, color){
-
-   
+MagPlot.updateMag = function(vector, magPoint, prevPoint){
+    
+    var color = "green";
     var mag;
     if (magType === "db")
     {
@@ -102,7 +84,10 @@ MagPlot.updateMag = function(vector, magPoint, prevPoint, color){
         var power = resultant * resultant;
         var powerDb = Math.log(power) / Math.log(10);
         mag = powerDb;
-        magScale = 20;
+        magScale = 30;
+        if(mag < fadingThreshold)
+            color = "red";
+
     }
     else if (magType === "linear")
     {

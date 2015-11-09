@@ -65,31 +65,6 @@ var initVectorsUI = function(){
 
 }
 
-var initAxes = function(){
-
-    PhasorPlot.initAxes();
-    MagPlot.initAxes();
-
-}
-
-
-var initOrigin = function(){      
-    
-    PhasorPlot.initOrigin();
-    MagPlot.initOrigin();
-
-}
-
-var initSinePoint = function(){
-
-    MagPlot.initGeometry();
-}
-
-var initVectors = function(){
-
-    PhasorPlot.initVectors();
-}
-
 var resizeSVG = function(){
     PhasorPlot.resize();
     MagPlot.resize();
