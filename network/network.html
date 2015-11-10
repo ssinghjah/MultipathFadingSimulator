@@ -1,0 +1,79 @@
+<html>
+    <head>
+        <title>Network Simulation</title>
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="css/bar.css">
+        <link rel="stylesheet" type="text/css" href="css/generic.css">
+        <script type="text/javascript" src="js/random.js"></script>
+        <script type="text/javascript" src="js/d3.min.js"></script>
+        <script type="text/javascript" src="js/jquery.min.js"></script>
+        <script type="text/javascript" src="js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="js/random-0.26.js"></script>
+        <script type="text/javascript" src="js/sim-0.26.js"></script>
+        <script type="text/javascript" src="js/packet.js"></script>
+        <script type="text/javascript" src="js/seedGenerator.js"></script>
+        <script type="text/javascript" src="js/packetGenerator.js"></script>
+        <script type="text/javascript" src="js/histogram.js"></script>
+        <script type="text/javascript" src="js/summary.js"></script>
+        <script type="text/javascript" src="js/eventLog.js"></script>
+        <script type="text/javascript" src="js/pie.js"></script>
+        <script type="text/javascript" src="js/resultsDisplayer.js"></script>
+        <script type="text/javascript" src="js/settings.js"></script>
+        <script type="text/javascript" src="js/bus.js"></script>
+        <script type="text/javascript" src="js/simulation.js"></script>
+        <script type="text/javascript" src="js/node.js"></script>
+        </head>
+        <body>
+     <!-- Header -->
+      <nav class="navbar navbar-default navbar-fixed-top">
+         <div class="container">
+            <div class="navbar-header">
+               <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#editorNavBar" aria-expanded="false">
+               <span class="sr-only">Toggle navigation</span>
+               <span class="icon-bar"></span>
+               <span class="icon-bar"></span>
+               <span class="icon-bar"></span>
+               </button>
+               <a class="navbar-brand" href="#">Network Simulator</a>
+            </div>
+            <div class="collapse navbar-collapse" id="editorNavBar">
+               <ul class="nav navbar-nav navbar-right">
+                  <li><a data-toggle="modal" class="noOutline" href="#"><button onclick="Simulate();" class="btn btn-success">Simulate</button></a></li>
+                  <li class="noOutline"><a data-toggle="modal" class="noOutline" data-target=".bs-example-modal-lg" id="editButton" href="#"><button class="btn btn-warning">Edit</button></a></li>
+               </ul>
+            </div>
+         </div>
+      </nav>
+      </nav>
+      <!-- Simulation Editor -->
+      <section id = "editor" class="modal fade bs-example-modal-lg">
+         <div class="modal-dialog">
+            <div class="modal-content">
+               <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                  <h4 class="modal-title">Simulation Editor</h4>
+               </div>
+               <section class ="controls modal-body">
+                  <div class="row">
+                     <div class="col-md-12">
+                        <label> Frame Slot Duration ( in ms )</label>
+                        <input value="0.05" id = "frameSlot" type="text"/>
+                     </div>
+                     <div class="col-md-12">
+                        <label> Simulation Duration ( in ms )</label>
+                        <input value="5" id = "simDuration" type="text"/>
+                     </div>
+                  </div>
+               </section>
+               <section class="modal-footer paddingTop">
+                  <input type="button" id="run" value="Save" class = "btn btn-success">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+               </section>
+            </div>
+         </div>
+      </section>
+      <!-- Results -->
+      <div id="results" class="container paddingTopHeader">
+      </div>
+   </body>
+</html>
