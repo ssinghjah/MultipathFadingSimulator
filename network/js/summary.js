@@ -6,7 +6,7 @@ createSummary = function(){
     var heading = panel.append("div").attr({"class":"panel-heading"});
     heading.text("Summary");
 
-    var columns = ["Node","Packets Delivered","Throughput", "Average Queue Delay", "Average End to End Delay", "Average Inter Arrival Time","Collisions per packet"]
+    var columns = ["Node","Packets Delivered","Throughput", "Average End to End Delay", "Average Inter Arrival Time","Collisions per packet"]
     
     var summary = [];
     var numNodes = nodes.length;
@@ -19,14 +19,8 @@ createSummary = function(){
        var packetsDelivered = packetsDeliveredList.length;
 
        if(packetsDeliveredList.length > 0){
-         var queueDelayList = $.map(packetsDeliveredList, function(packet){return packet.txTime - packet.birthTime;});
-         queueDelay = getAverage(queueDelayList);
-         queueDelay = queueDelay.toFixed(3) + " msec";
-      }
-
-       if(packetsDeliveredList.length > 0){
          
-         var e2eDelayList = $.map(packetsDeliveredList, function(packet){return packet.rxTime - packet.birthTime;});
+         var e2eDelayList = $.map(packetsDeliveredList, function(packet){return packet.rxTime - packet.birthTime - node[i].maxPropagationDelay ;});
          var e2eDelay = getAverage(e2eDelayList);
                  
          throughput = (SETTINGS.PacketSize * 8)/(e2eDelay * SETTINGS.ConvertToSec);
@@ -49,7 +43,6 @@ createSummary = function(){
         "Node":node.name, 
         "Packets Delivered":packetsDelivered,
         "Throughput":throughput, 
-        "Average Queue Delay":queueDelay, 
         "Average End to End Delay" : e2eDelay,
         "Average Inter Arrival Time":interArrivalTime, 
         "Collisions per packet":collisionsPerPacket });

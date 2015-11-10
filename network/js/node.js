@@ -89,10 +89,7 @@ Node.prototype.attemptToTransmit = function(){
             sim.log("Node " + this.name + " : Transmitting Packet");
             this.transmitting = true;
             this.busBusy = true;
-            currentPacket.txTime = this.sim.time();
-            if(currentPacket.txTime === 0){
-                var k = 0;
-            }            
+            currentPacket.txTime = this.sim.time();          
             bus.transmit(currentPacket);
             // If the Node does not detect collision till 2*Max Tp, it assumes that the packet is sent successfully.
             this.onPacketSentSuccessfullyReq = this.setTimer((2*this.maxPropagationDelay + SETTINGS.TransmissionTime)).done(this.onPacketSentSuccessfully);
