@@ -20,7 +20,7 @@ createSummary = function(){
 
        if(packetsDeliveredList.length > 0){
          
-         var e2eDelayList = $.map(packetsDeliveredList, function(packet){return packet.rxTime - packet.birthTime - node[i].maxPropagationDelay ;});
+         var e2eDelayList = $.map(packetsDeliveredList, function(packet){return packet.rxTime - packet.birthTime - nodes[i].maxPropagationDelay ;});
          var e2eDelay = getAverage(e2eDelayList);
                  
          throughput = (SETTINGS.PacketSize * 8)/(e2eDelay * SETTINGS.ConvertToSec);

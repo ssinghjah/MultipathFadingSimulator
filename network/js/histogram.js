@@ -1,14 +1,10 @@
 createHistogram = function( values, label, numBins){
 
+
 // A formatter for counts.
 var formatCount = d3.format(",.0f");
 
-var margin = {top: 10, right: 30, bottom: 50, left: 60},
-    width = 960 - margin.left - margin.right,
-    height = 500 - margin.top - margin.bottom;
-
 var maxX = Math.max.apply(Math,values);
-
 
 var x = d3.scale.linear()
     .domain([0, maxX])
@@ -80,7 +76,7 @@ svg.append("g")
     .call(yAxis)
     .append("text")
     .attr("transform", "rotate(-90)")
-    .attr("y", -margin.left)
+    .attr("y", -margin.left + 2)
     .attr("x", 0)
     .attr("dy", ".71em")
     .style("text-anchor", "end")
@@ -91,6 +87,4 @@ svg.append("g")
     .attr("x", 480)
     .attr("text-anchor", "middle")
     .text(label);
-
-
 }
