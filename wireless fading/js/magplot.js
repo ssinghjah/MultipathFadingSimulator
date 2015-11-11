@@ -91,7 +91,7 @@ MagPlot.updateMag = function(vector, magPoint, prevPoint){
     }
     else if (magType === "linear")
     {
-        var cosComponent = vector.xshift - Math.round(vector.matrix.x(vector.head[0], vector.head[1]));
+        var cosComponent = -vector.xshift + Math.round(vector.matrix.x(vector.head[0], vector.head[1]));
         mag = cosComponent;
         magScale = 1;
     }
