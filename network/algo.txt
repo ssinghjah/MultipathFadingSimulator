@@ -1,3 +1,10 @@
+Entities:
+Node
+Bus
+Packet Generator
+Packet
+
+
 Node Behaviour: 
 1.  The node checks if it has a packet to send.
 	If the the bus is idle, the node transmits a packet to the bus.
@@ -22,3 +29,5 @@ Bus Behaviour:
    If 0 nodes are currently transmitting on the bus, the bus sends an "idle" message to all other nodes after the corresponding propagation delays.
    This correponds to delivery of the last bit of the last packet on the bus to all nodes.
  
+Packet Generator Behaviour:
+1. The packet generator keeps on generating packets using an exponential distribution with a mean of a packet every  "1/lambda" frameslot.
