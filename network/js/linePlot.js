@@ -1,4 +1,4 @@
-var createBarGraph = function(data, label){
+var createLinePlot = function(data, label, className){
   
     
     var maxY = d3.max(data, function(d) { return d; });
@@ -24,7 +24,7 @@ var createBarGraph = function(data, label){
 
 
       
-      var statisticsCell = addStatisticsCell();
+      var statisticsCell = addStatisticsCell(className);
 
       var svg = statisticsCell.append("svg")
       .attr("width", width + margin.left + margin.right)
@@ -45,7 +45,7 @@ var createBarGraph = function(data, label){
             .attr("x", width)
             .attr("dy", "-0.71em")
             .style("text-anchor", "end")
-            .text("Time (msec)");
+            .text("Packet Sequence Number");
 ;
 
 
@@ -61,7 +61,7 @@ var createBarGraph = function(data, label){
             .attr("x", 0)
             .attr("dy", ".71em")
             .style("text-anchor", "end")
-            .text("Number of Packets");
+            .text("Time (msec)");
   
       
       // Add the line by appending an svg:path element with the data line we created above

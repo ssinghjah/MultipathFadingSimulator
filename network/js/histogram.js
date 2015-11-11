@@ -1,4 +1,4 @@
-createHistogram = function( values, label, numBins){
+createHistogram = function( values, label, className, numBins){
 
 
 // A formatter for counts.
@@ -32,7 +32,7 @@ var yAxis = d3.svg.axis()
     .scale(y)
     .orient("left");
 
-var statisticsCell = addStatisticsCell();
+var statisticsCell = addStatisticsCell(className);
 
 var svg = statisticsCell.append("svg")
     .attr("width", width + margin.left + margin.right)

@@ -1,6 +1,6 @@
 createEventLog = function(){
     
-    var statisticsCell = addStatisticsCell();
+    var statisticsCell = addStatisticsCell("eventLog results");
 
     var panel = statisticsCell.append("div").attr("class","panel panel-default");
     var heading = panel.append("div").attr({"class":"panel-heading"});

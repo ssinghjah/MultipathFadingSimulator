@@ -13,6 +13,7 @@ function Simulate(){
     createBus();
     initSim();
     sim.simulate(SETTINGS.SimTime);
+    console.log(sim.time());
     displayResults(); 
     //new RandomTester().run();
 }

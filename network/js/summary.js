@@ -1,10 +1,10 @@
 createSummary = function(){
     
-    var statisticsCell = addStatisticsCell();
+    var statisticsCell = addStatisticsCell("summary results");
 
     var panel = statisticsCell.append("div").attr("class","panel panel-default");
     var heading = panel.append("div").attr({"class":"panel-heading"});
-    heading.text("Summary");
+    heading.text("Summary ( Simulation Duration : " + ((sim.time()*SETTINGS.ConvertToSec).toFixed(1)) + " sec)");
 
     var columns = ["Node","Packets Delivered","Throughput", "Average End to End Delay", "Average Inter Arrival Time","Collisions per packet"]
     
@@ -23,8 +23,8 @@ createSummary = function(){
          var e2eDelayList = $.map(packetsDeliveredList, function(packet){return packet.rxTime - packet.birthTime - nodes[i].maxPropagationDelay ;});
          var e2eDelay = getAverage(e2eDelayList);
                  
-         throughput = (SETTINGS.PacketSize * 8)/(e2eDelay * SETTINGS.ConvertToSec);
-         throughput = bytesToSize(throughput);
+         throughput = parseFloat( packetsDelivered * (SETTINGS.PacketSize * 8)/(SETTINGS.SimTime * SETTINGS.ConvertToSec)).toFixed(3);
+         throughput = bitsToSize(throughput);
         
          e2eDelay = e2eDelay.toFixed(3) + " msec";
        }
@@ -81,11 +81,11 @@ createSummary = function(){
 
 }
 
-function bytesToSize(bytes) {
+function bitsToSize(bits) {
    var sizes = ['Bps', 'Kbps', 'Mbps', 'Gbps', 'Tbps'];
-   if (bytes == 0) return '0 Byte';
-   var i = parseInt(Math.floor(Math.log(bytes) / Math.log(1024)));
-   return Math.round(bytes / Math.pow(1000, i), 2) + ' ' + sizes[i];
+   if (bits == 0) return '0 Bps';
+   var i = parseInt(Math.floor(Math.log(bits) / Math.log(1000)));
+   return Math.round(bits / Math.pow(1000, i), 2) + ' ' + sizes[i];
 };
 
 function getAverage(array){
