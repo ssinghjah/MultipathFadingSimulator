@@ -6,6 +6,7 @@ var log = [];
 function Simulate(){
     
     clearResults();
+    clearLog();
     sim = new Sim();
     clearNodes();    
     createNodes();
@@ -30,9 +31,12 @@ function clearResults(){
     {
         element.removeChild(element.lastChild);
     }
-    log = [];
+    
 }
 
+function clearLog(){
+    log = [];
+}
 
 function clearNodes(){
     nodes = [];
@@ -43,9 +47,7 @@ function createNodes(){
     var numNodes = 2;
 
     var nodeA = new Node(0, "A", 0);
-    var nodeB = new Node(1, "B", 2000);
-    var nodeC = new Node(2, "C", 4000);
-    var nodeD = new Node(3, "D", 6000);
+    var nodeB = new Node(1, "B", SETTINGS.InterNodeDistance);
 
     nodes.push(nodeA);
     nodes.push(nodeB);

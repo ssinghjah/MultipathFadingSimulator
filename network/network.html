@@ -17,6 +17,7 @@
         <script type="text/javascript" src="js/histogram.js"></script>
         <script type="text/javascript" src="js/summary.js"></script>
         <script type="text/javascript" src="js/eventLog.js"></script>
+        <script type="text/javascript" src="js/eventHandlers.js"></script>
         <script type="text/javascript" src="js/pie.js"></script>
         <script type="text/javascript" src="js/resultsDisplayer.js"></script>
         <script type="text/javascript" src="js/settings.js"></script>
@@ -56,20 +57,42 @@
                   <h4 class="modal-title">Simulation Editor</h4>
                </div>
                <section class ="controls modal-body">
-                  <div class="row">
-                     <div class="col-md-12">
-                        <label> Frame Slot Duration ( in ms )</label>
-                        <input value="0.05" id = "frameSlot" type="text"/>
-                     </div>
-                     <div class="col-md-12">
-                        <label> Simulation Duration ( in ms )</label>
-                        <input value="5" id = "simDuration" type="text"/>
-                     </div>
+                  <div class="row paddingTop">
+                        <div class="col-xs-8">
+                          <p> Frame Slot Duration (msec)</p>
+                        </div>
+                        <div class="col-xs-4">
+                          <input value="0.05" id = "frameSlot" type="text"/>
+                        </div>
+                  </div>
+                  <div class="row paddingTop">
+                    <div class="col-xs-8">
+                      <p> Inter Node Distance (meters)</p>
+                    </div>
+                    <div class="col-xs-4">
+                      <input value="2000" id = "simDuration" type="text"/>
+                    </div>
+                  </div>
+                  <div class="row paddingTop">
+                    <div class="col-xs-8">
+                      <p> Transmission Rate (Mbps)</p>
+                    </div>
+                    <div class="col-xs-4">
+                      <input value="100" id = "transmissionRate" type="text"/>
+                    </div>
+                  </div>
+                  <div class="row paddingTop">
+                    <div class="col-xs-8">
+                      <p> Packet Inter Arrival Time (Number of Slots)</p>
+                    </div>
+                    <div class="col-xs-4">
+                      <input value="2" id = "packetInterArrival" type="text"/>
+                    </div>
                   </div>
                </section>
                <section class="modal-footer paddingTop">
-                  <input type="button" id="run" value="Save" class = "btn btn-success">
-                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                  <input type="button" id="saveParameters" value="Save" onclick="onSaveParameters();" class = "btn btn-success">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
                </section>
             </div>
          </div>

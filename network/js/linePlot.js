@@ -45,7 +45,7 @@ var createBarGraph = function(data, label){
             .attr("x", width)
             .attr("dy", "-0.71em")
             .style("text-anchor", "end")
-            .text("Packet Number");
+            .text("Time (msec)");
 ;
 
 

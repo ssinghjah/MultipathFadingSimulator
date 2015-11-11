@@ -69,7 +69,7 @@ svg.append("g")
     .attr("x", width)
     .attr("dy", "-0.71em")
     .style("text-anchor", "end")
-    .text("Time (millisec)");;
+    .text("Time (msec)");;
 
 svg.append("g")
     .attr("class", "y axis")

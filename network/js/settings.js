@@ -11,6 +11,5 @@ SETTINGS.PropagationSpeed = 2*Math.pow(10,5);
 SETTINGS.ConvertToSec = Math.pow(10,-3);
 SETTINGS.ConvertToMilliSec = Math.pow(10,3);
 SETTINGS.TransmissionTime = ((SETTINGS.PacketSize*8)/(SETTINGS.TransmissionRate*Math.pow(10,6)))*SETTINGS.ConvertToMilliSec;
-console.log(SETTINGS.TransmissionTime);
 
 

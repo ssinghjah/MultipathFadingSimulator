@@ -13,10 +13,6 @@ path {
 			  stroke-opacity: .5;
 			}
 
-			.x.axis path {
-			  display: none;
-			}
-
 			.y.axis line, .y.axis path {
 			  fill: none;
 			  stroke: #000;
