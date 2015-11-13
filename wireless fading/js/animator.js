@@ -8,8 +8,10 @@ var startAnimation = function(){
 var animate = function () {
         
         PhasorPlot.updateGeometry();
+        AudioManager.adjustVolume();
         if(magPlotVisible) 
-            MagPlot.updateGeometry();      
+            MagPlot.updateGeometry(); 
+
     }
 
 var stopAnimation = function(){

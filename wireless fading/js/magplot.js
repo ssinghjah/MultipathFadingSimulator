@@ -1,13 +1,13 @@
 function MagPlot(){
 }
 
-
 MagPlot.create = function(){
 
 	this.height = canvasHeight;
 	this.width = canvasWidth;
     this.timeShift = this.width * timeShiftSpeed; // Move x coordinate by timeShift on each frame
     this.currentTime = 0; // Current time position
+    this.dbScale = 30;
 	this.svg = Raphael("magCanvas", this.width, this.height);
 }
 
@@ -73,6 +73,30 @@ MagPlot.updateGeometry = function(){
     MagPlot.updateMag(resultant, this.resultantMag, this.prevResPoint);
 }
 
+MagPlot.calculatePowerDb = function(vector){
+        var resultant = vector.getTotalLength();
+        var power = resultant * resultant;
+        var powerDb;
+        if(power === 0)
+        {
+            powerDb = -this.height/2;
+        }
+        else
+        {
+            powerDb = Math.log(power) * this.dbScale / Math.log(10);
+        }
+
+        return powerDb;
+        
+}
+
+
+MagPlot.calculateVoltageLinear = function(vector){
+    
+    var cosComponent = -vector.xshift + Math.round(vector.matrix.x(vector.head[0], vector.head[1]));
+    return cosComponent;
+}
+
 
 MagPlot.updateMag = function(vector, magPoint, prevPoint){
     
@@ -80,27 +104,21 @@ MagPlot.updateMag = function(vector, magPoint, prevPoint){
     var mag;
     if (magType === "db")
     {
-        var resultant = vector.getTotalLength();
-        var power = resultant * resultant;
-        var powerDb = Math.log(power) / Math.log(10);
-        mag = powerDb;
-        magScale = 30;
+        mag = this.calculatePowerDb(vector);
         if(mag < fadingThreshold)
             color = "red";
 
     }
     else if (magType === "linear")
     {
-        var cosComponent = -vector.xshift + Math.round(vector.matrix.x(vector.head[0], vector.head[1]));
-        mag = cosComponent;
-        magScale = 1;
+        mag =this.calculateVoltageLinear();
     }
     
     // if (Math.abs(mag * magScale) > this.height / 2) {
     //    magScale = this.height / (2 * Math.abs(mag));
     //}
 
-    mag = this.height / 2 - mag * magScale;
+    mag = this.height / 2 - mag;
     magPoint.attr({ "cx": this.currentTime, "cy": mag });
 
     var line = this.svg.path(["M", prevPoint.x, prevPoint.y, "L", this.currentTime, mag]);
