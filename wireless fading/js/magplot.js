@@ -74,8 +74,8 @@ MagPlot.updateGeometry = function(){
 }
 
 MagPlot.calculatePowerDb = function(vector){
-        var resultant = vector.getTotalLength();
-        var power = resultant * resultant;
+        var voltage = MagPlot.calculateVoltageLinear(vector);
+        var power = voltage * voltage;
         var powerDb;
         if(power === 0)
         {
