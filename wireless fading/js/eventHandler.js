@@ -62,3 +62,7 @@ onToggleMagType = function () {
     reinit();
   
 }
+
+var onToggleAudio = function(){
+  AudioManager.toggleAudio();
+}
