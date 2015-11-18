@@ -19,7 +19,7 @@
       <script type="text/javascript" src="js/initializer.js"></script>
    </head>
    <body>
-      <audio id="audio" src="audio/audio.ogg" autoplay preload loop></audio>
+      <audio id="audio" src="audio/audio.ogg" preload loop></audio>
       <nav class="navbar navbar-default navbar-fixed-top">
          <div class="container">
             <div class="navbar-header">
@@ -79,10 +79,12 @@
                  <div class="row">
                      <div class="col-md-12 highZ">
                          <input type="checkbox" data-magtype="db" id="toggleMagType" checked data-toggle="toggle" data-width="135" data-on="Power (dB)" data-off="Voltage (Linear)" data-onstyle="primary" data-offstyle="default">
+                         <button type="button"  id="toggleAudio" class="btn btn-default" aria-label="Left Align">
+                           <span class="glyphicon glyphicon-play" aria-hidden="true"></span>
+                        </button>
                      </div>
                      <div class="col-md-12">
                          <section id="magCanvas"></section>
-
                      </div>
                  </div>
              </div>

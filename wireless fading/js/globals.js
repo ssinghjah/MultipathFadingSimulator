@@ -13,5 +13,5 @@ var animationInterval = 16;
 var magType = "db";
 var fadingThreshold = 70; // Power in dB
 var timeShiftSpeed = 1/4000;
-var maxVolumePower = 100; // A power of maxVolume gives maximum volume for the audio. This should be greater than the fading threshold
-
+var maxVolumePower = 140; // A power of maxVolume gives maximum volume for the audio. This should be greater than the fading threshold
+var zeroMagThreshold = 1 // If the cos component is less than 1 pixels, the magnitude is assumed to be 0

@@ -62,3 +62,7 @@
             .highZ{
                 z-index:2;
             }
+
+            button#toggleAudio{
+                height: 34px;
+            }

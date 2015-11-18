@@ -94,6 +94,7 @@ MagPlot.calculatePowerDb = function(vector){
 MagPlot.calculateVoltageLinear = function(vector){
     
     var cosComponent = -vector.xshift + Math.round(vector.matrix.x(vector.head[0], vector.head[1]));
+    cosComponent = Math.abs(cosComponent) < zeroMagThreshold ? 0 : cosComponent
     return cosComponent;
 }
 
@@ -111,13 +112,9 @@ MagPlot.updateMag = function(vector, magPoint, prevPoint){
     }
     else if (magType === "linear")
     {
-        mag =this.calculateVoltageLinear();
+        mag = this.calculateVoltageLinear(vector);
     }
     
-    // if (Math.abs(mag * magScale) > this.height / 2) {
-    //    magScale = this.height / (2 * Math.abs(mag));
-    //}
-
     mag = this.height / 2 - mag;
     magPoint.attr({ "cx": this.currentTime, "cy": mag });
 
