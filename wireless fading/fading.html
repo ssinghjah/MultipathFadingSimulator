@@ -33,13 +33,14 @@
             </div>
             <div class="collapse navbar-collapse" id="editorNavBar">
                <ul class="nav navbar-nav navbar-right">
-                  <li><a class="noOutline" id="toggleAbout" href="#">About</a></li>
+                  <li><a class="noOutline" id="toggleAbout" data-visible = false href="#">About</a></li>
                   <li><a class="noOutline" href="#"><button id="toggleMagnitude" class="btn btn-primary">Show Magnitude</button></a></li>
                   <li class="noOutline"><a data-toggle="modal" class="noOutline" data-target=".bs-example-modal-lg" id="editButton" href="#"><button class="btn btn-warning">Edit</button></a></li>
                </ul>
             </div>
          </div>
       </nav>
+
       <!-- Component Editor -->
       <section id = "editor" class="modal fade bs-example-modal-lg">
          <div class="modal-dialog">
@@ -67,7 +68,9 @@
          </div>
       </section>
       
+      
       <div class="container">
+         <!-- Simulation Canvas -->
          <div class="row" id ="canvas">
             <!-- Phasor Plot -->
             <div class="col-md-12" id="phasorPlot">
@@ -89,7 +92,43 @@
                  </div>
              </div>
          </div>
+
+         <!-- About -->
+         <div class="row" id ="about">
+            <div class="col-md-12">
+               <section class="paddingTopHeader">
+                  <p>This web pages simulates multipath fading.</p>
+                  <p>
+                     <label>Phasor Plot</label></br>
+                     Each multipath component is represented by a phasor of editable amplitude, intial phase and frequency.</br>
+                     Multipath Components are represented by black phasors.</br>
+                     The resultant is calculated as the phasor sum of the multipath components and is represented by the green phasor.
+                  </p>
+                  <p>
+                     <label>Magnitude Plot</label></br>
+                     The "Show Magnitude" button shows the Magnitude Plot - variation of magnitude with time.</br>
+                     There are 2 options - "Voltage (Linear)" and "Power (dB)"</br>
+                     The "Voltage (Linear)" represents the resultant voltage in linear scale. </br> 
+                     This is calculated as the component of the resultant phasor on the x-axis, i.e. the cosine component of the resultant.</br>
+                     The "Voltage (Power)" represents the resultant power in dB scale. </br> 
+                     The resultant power represents the power calculated using the above voltage, converted to dB.</br>
+                  </p>
+                  <p>
+                     <label>Effect on Fading on Audio</label></br>
+                     The Magnitude Plot has a Play button. </br>
+                     This button plays an audio track whose volume is changed proportionally with the resultant power in dB.</br>
+                  </p>
+                  <p>
+                     <label>Editor</label></br>
+                     The number of components and the amplitude, initial phase and frequency of each component can be edited by clicking on the "Edit" button.
+                  </p>
+               </section>
+            </div>
+         </div>
+
       </div>
+
+      <!-- Footer -->
       <footer class="footer">
       <div class="container">
          <div class="row">

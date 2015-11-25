@@ -27,6 +27,10 @@ var onHideEditor = function(){
       reinit();
 }
 
+var onWindowResize = function(){
+  if(!isAnimationStopped())
+      reinit();
+}
 
 var onKeyUp = function(event){
 
@@ -62,6 +66,33 @@ onToggleMagType = function () {
     reinit();
   
 }
+
+onToggleAbout = function () {
+    
+    var toggleAboutElem = $("#toggleAbout");
+    var visible = toggleAboutElem.data("visible");
+    if(!visible)
+    {
+      stopAnimation();
+      $("#canvas").hide();
+      $("#editButton").hide();
+      $("#toggleMagnitude").hide();
+      toggleAboutElem.text("Go Back");
+      toggleAboutElem.data("visible", true);
+    }
+    else{
+      
+      $("#canvas").show();
+      $("#editButton").show();
+      $("#toggleMagnitude").show();
+      toggleAboutElem.data("visible", false);
+      toggleAboutElem.text("About");
+      reinit();
+
+    }
+    
+}
+
 
 var onToggleAudio = function(){
   AudioManager.toggleAudio();

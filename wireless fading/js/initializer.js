@@ -48,11 +48,12 @@ var initSVG = function(){
 
 var initEventWiring = function(){
 
-    window.onresize = reinit;
+    window.onresize = onWindowResize;
     document.getElementById("numComponentsButton").addEventListener("click",  onUpdateNumComponents, false);
     document.getElementById("numComponents").addEventListener("keyup",  onNumComponentsKeyUp, false);
     document.getElementById("run").addEventListener("click", onEdit , false);
     document.getElementById("toggleAudio").addEventListener("click", onToggleAudio , false);
+    document.getElementById("toggleAbout").addEventListener("click", onToggleAbout , false);
     document.addEventListener("keyup", onKeyUp, false);
     $('#editor').on('hidden.bs.modal', onHideEditor);
     document.getElementById("toggleMagnitude").addEventListener("click", onToggleMagnitude, false);
