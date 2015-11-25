@@ -32,9 +32,11 @@ var reinit = function(event){
 
 var initHeightWidth = function(){
 
-    var canvas = document.getElementById("phasorCanvas");
-    canvasHeight = canvas.offsetHeight - 60;
+    var canvas = document.getElementById("phasorPlot");
+    var footerHeight = $(".footer").height();
+    canvasHeight = canvas.offsetHeight - 60 - footerHeight;
     canvasWidth = canvas.offsetWidth;
+    $(".footer").width($(window).width() - 8);
 }
 
 var initSVG = function(){
