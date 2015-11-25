@@ -1,8 +1,8 @@
 var Constants = {};
-Constants.InitialPhase = [0,0,0,0];
-Constants.InitialNumVectors = 4;
-Constants.InitialMag = [60,60,60,60];
-Constants.InitialFreq = [-0.3,0.5,0.5,-0.3];
+Constants.InitialPhase = 0;
+Constants.InitialNumVectors = 3;
+Constants.InitialMag = 60;
+Constants.InitialFreq = 1;
 Object.freeze(Constants);
 
 // Globals

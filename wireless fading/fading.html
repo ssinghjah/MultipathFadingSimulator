@@ -7,6 +7,7 @@
       <script type="text/javascript" src="js/jquery.min.js"></script>
       <script type="text/javascript" src="js/bootstrap.min.js"></script>
       <script type="text/javascript" src="js/bootstrapToggle.min.js"></script>
+      <script type="text/javascript" src="js/debounce.min.js"></script>
       <script type="text/javascript" src="js/raphael.js"></script>
       <script type="text/javascript" src="js/audioManager.js"></script>
       <script type="text/javascript" src="js/uiutils.js"></script>
@@ -53,8 +54,7 @@
                   <div class="row">
                      <div class="col-md-12">
                         <label> Number of Components </label>
-                        <input value="3" id = "numComponents" type="text"/>
-                        <input type="button" id="numComponentsButton" value="Update" class = "btn btn-primary btn-xs">
+                        <input id = "numComponents" type="text"/>
                      </div>
                   </div>
                   <section id="componentDefinition"> 
@@ -94,7 +94,7 @@
          </div>
 
          <!-- About -->
-         <div class="row" id ="about">
+         <div class="row" id ="about" style="display:none">
             <div class="col-md-12">
                <section class="paddingTopHeader">
                   <p>This web pages simulates multipath fading.</p>

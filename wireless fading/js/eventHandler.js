@@ -73,6 +73,7 @@ onToggleAbout = function () {
     var visible = toggleAboutElem.data("visible");
     if(!visible)
     {
+      $("#about").show();
       stopAnimation();
       $("#canvas").hide();
       $("#editButton").hide();
@@ -81,7 +82,7 @@ onToggleAbout = function () {
       toggleAboutElem.data("visible", true);
     }
     else{
-      
+      $("#about").hide();
       $("#canvas").show();
       $("#editButton").show();
       $("#toggleMagnitude").show();

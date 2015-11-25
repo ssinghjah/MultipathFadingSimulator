@@ -49,8 +49,6 @@ var initSVG = function(){
 var initEventWiring = function(){
 
     window.onresize = onWindowResize;
-    document.getElementById("numComponentsButton").addEventListener("click",  onUpdateNumComponents, false);
-    document.getElementById("numComponents").addEventListener("keyup",  onNumComponentsKeyUp, false);
     document.getElementById("run").addEventListener("click", onEdit , false);
     document.getElementById("toggleAudio").addEventListener("click", onToggleAudio , false);
     document.getElementById("toggleAbout").addEventListener("click", onToggleAbout , false);
@@ -58,11 +56,13 @@ var initEventWiring = function(){
     $('#editor').on('hidden.bs.modal', onHideEditor);
     document.getElementById("toggleMagnitude").addEventListener("click", onToggleMagnitude, false);
     $("#toggleMagType").change(onToggleMagType);
+    $('#numComponents').keyup( $.debounce( 350, onUpdateNumComponents ) );
   
 }
 
 
 var initVectorsUI = function(){
+    $('#numComponents').val(numVectors);  
     for(var i = 0; i < numVectors; i++){
         addComponentUI(i);
     }

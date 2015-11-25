@@ -78,7 +78,7 @@ MagPlot.calculatePowerDb = function(vector){
         var powerDb;
         if(power === 0)
         {
-            powerDb = -this.height/2;
+            powerDb = -this.height/2 + 5;
         }
         else
         {
