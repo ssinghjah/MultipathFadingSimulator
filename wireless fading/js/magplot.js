@@ -7,7 +7,6 @@ MagPlot.create = function(){
 	this.width = canvasWidth;
     this.timeShift = this.width * timeShiftSpeed; // Move x coordinate by timeShift on each frame
     this.currentTime = 0; // Current time position
-    this.dbScale = 30;
 	this.svg = Raphael("magCanvas", this.width, this.height);
 }
 
@@ -83,11 +82,10 @@ MagPlot.calculatePowerDb = function(vector){
         }
         else
         {
-            powerDb = Math.log(power) * this.dbScale / Math.log(10);
+            powerDb = 10 * Math.log(power) * dbScale / Math.log(10);
         }
 
         return powerDb;
-        
 }
 
 
@@ -106,13 +104,14 @@ MagPlot.updateMag = function(vector, magPoint, prevPoint){
     if (magType === "db")
     {
         mag = this.calculatePowerDb(vector);
-        if(mag < fadingThreshold)
+        if(mag < fadingThresholdPower)
             color = "red";
-
     }
     else if (magType === "linear")
     {
         mag = this.calculateVoltageLinear(vector);
+        if(Math.abs(mag) < fadingThresholdVoltage)
+            color = "red"
     }
     
     mag = this.height / 2 - mag;
