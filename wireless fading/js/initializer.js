@@ -35,7 +35,7 @@ var initHeightWidth = function(){
     var canvas = document.getElementById("phasorPlot");
     var footerHeight = $(".footer").height();
     canvasHeight = canvas.offsetHeight - 60 - footerHeight;
-    canvasWidth = canvas.offsetWidth;
+    canvasWidth = canvas.offsetWidth - 5;
     $(".footer").width($(window).width() - 8);
 }
 
