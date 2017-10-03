@@ -90,10 +90,12 @@ MagPlot.calculatePowerDb = function(vector){
 
 
 MagPlot.calculateVoltageLinear = function(vector){
-    
-    var cosComponent = -vector.xshift + Math.round(vector.matrix.x(vector.head[0], vector.head[1]));
-    cosComponent = Math.abs(cosComponent) < zeroMagThreshold ? 0 : cosComponent
-    return cosComponent;
+    var x = -vector.xshift + Math.round(vector.matrix.x(vector.head[0], vector.head[1]));
+    var y = -canvasHeight/2 + Math.round(vector.matrix.y(vector.head[0], vector.head[1]));
+    var mag = Math.sqrt(x*x + y*y);
+    return mag;
+    //cosComponent = Math.abs(cosComponent) < zeroMagThreshold ? 0 : cosComponent
+    //return cosComponent;
 }
 
 
