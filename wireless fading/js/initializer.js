@@ -56,6 +56,8 @@ var initEventWiring = function(){
     $('#editor').on('hidden.bs.modal', onHideEditor);
     document.getElementById("toggleMagnitude").addEventListener("click", onToggleMagnitude, false);
     $("#toggleMagType").change(onToggleMagType);
+    $("#toggleMagQuantity").change(onToggleMagQuantity);
+
     $('#numComponents').keyup( $.debounce( 350, onUpdateNumComponents ) );
   
 }

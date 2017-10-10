@@ -89,13 +89,36 @@ MagPlot.calculatePowerDb = function(vector){
 }
 
 
-MagPlot.calculateVoltageLinear = function(vector){
+MagPlot.calculateResultantMagnitude = function(vector){
     var x = -vector.xshift + Math.round(vector.matrix.x(vector.head[0], vector.head[1]));
     var y = -canvasHeight/2 + Math.round(vector.matrix.y(vector.head[0], vector.head[1]));
     var mag = Math.sqrt(x*x + y*y);
     return mag;
-    //cosComponent = Math.abs(cosComponent) < zeroMagThreshold ? 0 : cosComponent
-    //return cosComponent;
+}
+
+MagPlot.calculateRealComponent = function(vector){
+    var cosComponent = -vector.xshift + Math.round(vector.matrix.x(vector.head[0], vector.head[1]));        
+    cosComponent = Math.abs(cosComponent) < zeroMagThreshold ? 0 : cosComponent;
+    return cosComponent;        
+}
+
+
+MagPlot.calculateVoltageLinear = function(vector){
+    var mag=0;
+    switch(magQuantity)
+    {
+        case "resultant":
+        {
+            mag = this.calculateResultantMagnitude(vector);
+            break;
+        }
+        case "real":
+        {
+            mag = this.calculateRealComponent(vector);
+            break;
+        }        
+    }
+    return mag;
 }
 
 

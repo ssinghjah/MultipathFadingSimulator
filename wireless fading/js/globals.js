@@ -11,6 +11,7 @@ var components = [];
 var resultant;   
 var animationInterval = 16;
 var magType = "db";
+var magQuantity = "resultant";
 var fadingThresholdPower = 100; // Power in dB ( scaled )
 var dbScale = 3; // This is multiplied to the power in dB
 var timeShiftSpeed = 1/4000;

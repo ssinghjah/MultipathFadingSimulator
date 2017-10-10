@@ -67,6 +67,16 @@ onToggleMagType = function () {
   
 }
 
+onToggleMagQuantity = function () {
+    var magTypeElem = document.getElementById('toggleMagQuantity');
+    if (magTypeElem.checked)
+        magQuantity = "resultant";
+    else
+        magQuantity = "real";
+    reinit();
+  
+}
+
 onToggleAbout = function () {
     
     var toggleAboutElem = $("#toggleAbout");
