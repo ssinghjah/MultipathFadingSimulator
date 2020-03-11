@@ -1,4 +1,5 @@
  This web page simulates multipath fading.
+ 
  **Phasor Plot:**
                      Each multipath component is represented by a phasor of editable amplitude, intial phase and frequency.
                      Multipath Components are represented by black phasors.
